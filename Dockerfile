@@ -1,5 +1,5 @@
 # Using Debian slim-buster to reduce Docker image size
-FROM public.ecr.aws/debian/debian:bullseye-slim
+FROM debian:bullseye-slim
 
 WORKDIR /home/app
 

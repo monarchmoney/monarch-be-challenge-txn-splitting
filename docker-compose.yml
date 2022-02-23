@@ -12,7 +12,6 @@ x-base: &base
     # hack to prevent .venv from OS X from coming in,
     # https://stackoverflow.com/questions/29181032/add-a-volume-to-docker-but-exclude-a-sub-folder
     - /home/app/.venv
-    - ~/.aws:/root/.aws
   depends_on:
     - postgres
     - redis
@@ -26,7 +25,7 @@ services:
     ports:
       - 8000:80
     container_name: monarch_api_web
-    command: /home/app/entrypoint/run-web-dev.sh
+    command: /home/app/entrypoint/run-web.sh
     environment:
       - PORT=80
       - DEVELOP
@@ -58,12 +57,6 @@ services:
     image: redis:6.0.4-alpine
     networks:
       - internal
-
-  mailhog:
-    image: mailhog/mailhog
-    ports:
-      - 1025:1025 # smtp server
-      - 8025:8025 # web ui
 
 networks:
   default:
