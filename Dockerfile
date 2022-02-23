@@ -45,6 +45,4 @@ RUN \
 # Copy rest of files
 COPY . /home/app
 
-RUN pip install -e shortcuts
-
 CMD "/home/app/entrypoint/run-web.sh"
