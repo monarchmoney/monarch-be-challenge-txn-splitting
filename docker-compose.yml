@@ -1,0 +1,65 @@
+version: "3.8"
+
+x-base: &base
+  build:
+    context: .
+    args:
+      DEVELOPMENT: 1
+  env_file:
+    - .dockerenv
+  volumes:
+    - .:/home/app:cached
+    # hack to prevent .venv from OS X from coming in,
+    # https://stackoverflow.com/questions/29181032/add-a-volume-to-docker-but-exclude-a-sub-folder
+    - /home/app/.venv
+  depends_on:
+    - postgres
+    - redis
+  networks:
+    - default
+    - internal
+
+services:
+  web:
+    <<: *base
+    ports:
+      - 8000:80
+    container_name: monarch_api_web
+    command: /home/app/entrypoint/run-web.sh
+    environment:
+      - PORT=80
+      - DEVELOP
+      - AUTORELOAD
+
+  worker:
+    <<: *base
+    container_name: monarch_api_worker
+    command: /home/app/entrypoint/run-worker-dev.sh
+    environment:
+      - DEVELOP
+      - AUTORELOAD
+
+  postgres:
+    container_name: monarch_api_postgres
+    image: postgres:12-alpine
+    ports:
+      - 6432:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ~/.postgres_data/monarch-api:/var/lib/postgresql/data:delegated
+    networks:
+      - internal
+
+  redis:
+    container_name: monarch_api_redis
+    image: redis:6.0.4-alpine
+    networks:
+      - internal
+
+networks:
+  default:
+    external:
+      name: monarch
+  internal:
