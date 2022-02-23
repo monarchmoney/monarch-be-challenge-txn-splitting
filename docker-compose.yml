@@ -24,23 +24,23 @@ services:
     <<: *base
     ports:
       - 8000:80
-    container_name: monarch_api_web
-    command: /home/app/entrypoint/run-web.sh
+    # container_name: monarch_api_web
+    command: /home/app/run-web.sh
     environment:
       - PORT=80
       - DEVELOP
       - AUTORELOAD
 
-  worker:
-    <<: *base
-    container_name: monarch_api_worker
-    command: /home/app/entrypoint/run-worker-dev.sh
-    environment:
-      - DEVELOP
-      - AUTORELOAD
+  # worker:
+  #   <<: *base
+  #   container_name: monarch_api_worker
+  #   command: /home/app/entrypoint/run-worker-dev.sh
+  #   environment:
+  #     - DEVELOP
+  #     - AUTORELOAD
 
   postgres:
-    container_name: monarch_api_postgres
+    # container_name: monarch_api_postgres
     image: postgres:12-alpine
     ports:
       - 6432:5432
@@ -53,7 +53,7 @@ services:
       - internal
 
   redis:
-    container_name: monarch_api_redis
+    # container_name: monarch_api_redis
     image: redis:6.0.4-alpine
     networks:
       - internal
