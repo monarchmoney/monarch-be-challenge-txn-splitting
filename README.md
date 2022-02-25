@@ -47,6 +47,12 @@ Poke around the REST API
 - http://localhost:8000/api/transactions
 
 
+## Useful Dev Commands
+Interactive Django shell
+```
+./manage.py shell
+```
+
 ## Database Migrations
 1. Make a change to a model
 2. Run `./manage.py makemigrations monarch` to generate a migration file
