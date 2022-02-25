@@ -1,4 +1,5 @@
 # monarch-be-challenge-txn-splitting
+This is a Django based backend takehome challenge.
 
 ## Prerequisites
 - A machine with Docker desktop / runtime set up. See https://www.docker.com/products/docker-desktop to install
@@ -42,3 +43,22 @@ Log in to the admin (this is the easiest way to log in as your user)
 Poke around the REST API 
 - http://localhost:8000/api/users/me
 - http://localhost:8000/api/transactions
+
+
+## Database Migrations
+1. Make a change to a model
+2. Run `./manage.py makemigrations monarch` to generate a migration file
+3. Apply migration with `./manage.py migrate`
+
+## Unit Tests
+We use pytest for unit tests. If you'd like to write unit tests, or it is helpful with your development, feel free to write some tests. You can put them in `monarch/tests` or wherever you like.
+
+Run tests by doing
+```
+runtests
+```
+
+Or do
+```
+pytest
+```
