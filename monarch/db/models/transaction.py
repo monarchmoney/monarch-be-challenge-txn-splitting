@@ -3,7 +3,7 @@ from django.db import models
 
 class Transaction(models.Model):
     class Meta:
-        db_table = "account"
+        db_table = "transaction"
 
     data_provider_id = models.TextField(blank=True, null=True, unique=True)
 
@@ -14,11 +14,16 @@ class Transaction(models.Model):
     # category = models.ForeignKey(
     #     "monarch.Category",
     #    related_name="transactions",
-        # on_delete=models.PROTECT,
+    #    on_delete=models.PROTECT,
     # )
 
     user = models.ForeignKey(
         "monarch.User",
-        related_name="accounts",
+        related_name="transactions",
+        on_delete=models.CASCADE,
+    )
+    account = models.ForeignKey(
+        "monarch.Account",
+        related_name="transactions",
         on_delete=models.CASCADE,
     )
