@@ -5,6 +5,11 @@ name = "pypi"
 
 [packages]
 django = "*"
+python-dotenv = "*"
+djangorestframework = "*"
+django-environ = "*"
+psycopg2-binary = "*"
+flake8 = "*"
 
 [dev-packages]
 
