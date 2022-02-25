@@ -53,6 +53,12 @@ Interactive Django shell
 ./manage.py shell
 ```
 
+See logs from Docker
+```
+docker-compose logs -f     # logs from all containers
+docker-compose logs -f web    # logs from only web container
+```
+
 ## Database Migrations
 1. Make a change to a model
 2. Run `./manage.py makemigrations monarch` to generate a migration file
