@@ -1,38 +1,5 @@
 from monarch.db.models import Category, User
 from monarch.constants import CategoryType,  DEFAULT_INCOME_CATEGORY, DEFAULT_EXPENSE_CATEGORY
-from monarch.utils.enum import SimpleEnum
-
-
-# DEFAULT_INCOME_CATEGORY_NAMES = [
-#     'Paychecks',
-#     'Interest',
-# ]
-
-# DEFAULT_EXPENSE_CATEGORY_NAMES = [
-#     'Groceries',
-#     'Restaurants',
-#     'Entertainment',
-#     'Travel',
-#     'Bills',
-#     'Gas',
-#     'Shopping',
-# ]
-
-
-# class DEFAULT_INCOME_CATEGORIES(SimpleEnum):
-#     PAYCHECKS = 'Paychecks'
-#     INTEREST = 'Interest'
-
-
-# class DEFAULT_EXPENSE_CATEGORIES(SimpleEnum):
-#     GROCERIES = 'Groceries'
-#     RESTAURANTS = 'Restaurants'
-#     ENTERTAINMENT = 'Entertainment'
-#     TRAVEL = 'Travel'
-#     BILLS = 'Bills',
-#     GAS = 'Gas'
-#     SHOPPING = 'Shopping'
-
 
 
 def create_category(user: User, name: str, type: str):
@@ -54,3 +21,11 @@ def create_default_categories_for_user(user: User):
 
 def get_user_category_by_name(user: User, name: str):
     return user.categories.get(name=name)
+
+
+def get_category_for_user(user, category_id):
+    return user.categories.get(id=category_id)
+
+
+def get_categories_for_user(user):
+    return list(user.categories.all())
