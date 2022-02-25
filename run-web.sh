@@ -1,5 +1,5 @@
 #!/bin/bash
-#DEVELOP=${DEVELOP:-1}
+DEVELOP=${DEVELOP:-1}
 AUTORELOAD=${AUTORELOAD:-1}
 PORT=${PORT:-8000}
 
@@ -22,8 +22,8 @@ while true; do
   echo "Starting development server (autoreload=$AUTORELOAD)"
   if [[ $AUTORELOAD == "1" ]]; then
     # echo "Running Django with watchdog"
-    # watchmedo auto-restart -d . -p'*.py' --recursive -- ./manage.py runserver 0.0.0.0:${PORT} --noreload
-    ./manage.py runserver 0.0.0.0:${PORT}
+    watchmedo auto-restart -d . -p'*.py' --recursive -- ./manage.py runserver 0.0.0.0:${PORT} --noreload
+    # ./manage.py runserver 0.0.0.0:${PORT}
   else
     ./manage.py runserver 0.0.0.0:${PORT} --noreload
   fi
