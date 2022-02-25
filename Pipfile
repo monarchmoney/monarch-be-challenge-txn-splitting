@@ -10,6 +10,8 @@ djangorestframework = "*"
 django-environ = "*"
 psycopg2-binary = "*"
 flake8 = "*"
+watchdog = "*"
+pyyaml = "*"
 
 [dev-packages]
 

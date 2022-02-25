@@ -14,3 +14,4 @@ class Command(BaseCommand):
         email = kwargs["email"]
         user = User.objects.get(email=email)
         seed_data_for_user(user, reset=True)
+        print("--> Seeded data for user: {}".format(user))
