@@ -28,3 +28,6 @@ class Transaction(models.Model):
         on_delete=models.PROTECT,
         null=True,
     )
+
+    def __str__(self) -> str:
+        return f"{self.id} ({self.description}, {self.date})"

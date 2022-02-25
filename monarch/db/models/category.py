@@ -17,3 +17,6 @@ class Category(models.Model):
 
     name = models.TextField()
     type = models.TextField(choices=enum_to_choices(CategoryType))  # 'income', 'expense', 'transfer
+
+    def __str__(self) -> str:
+        return f"{self.id} ({self.name})"

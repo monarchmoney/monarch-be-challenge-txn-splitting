@@ -22,3 +22,6 @@ class Account(models.Model):
     type = models.TextField(choices=enum_to_choices(AccountType), null=True)
 
     # current_balance = models.DecimalField(max_digits=16, decimal_places=2, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return f"{self.id} ({self.name})"

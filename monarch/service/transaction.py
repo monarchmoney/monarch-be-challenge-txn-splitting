@@ -57,3 +57,23 @@ def get_transactions(
     qs = qs.order_by('-date')
     transactions = qs.all()[offset: offset + limit]
     return transactions
+
+
+def update_transaction(
+    transaction: Transaction,
+    **fields,
+) -> Transaction:
+    """
+    Update a transaction
+    """
+    if 'description' in fields:
+        transaction.description = fields['description']
+    if 'amount' in fields:
+        transaction.amount = ensure_decimal(fields['amount'])
+    if 'date' in fields:
+        transaction.date = fields['date']
+    if 'category' in fields:
+        transaction.category = fields['category']
+
+    transaction.save()
+    return transaction

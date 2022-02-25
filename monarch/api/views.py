@@ -11,7 +11,8 @@ from monarch.api.serializers import (
 from monarch.db.models import User, Account, Category, Transaction
 from monarch.service.account import get_account_for_user, get_accounts_for_user
 from monarch.service.category import get_categories_for_user, get_category_for_user
-from monarch.service.transaction import get_transaction_for_user, get_transactions
+from monarch.service.transaction import get_transaction_for_user, get_transactions, update_transaction
+from monarch.utils import pick_keys
 
 
 class UserMe(APIView):
@@ -90,5 +91,21 @@ class TransactionDetail(APIView):
 
     def get(self, request, pk, **kwargs):
         transaction = self.get_object(pk, user=request.user)
+        serializer = TransactionSerializer(transaction)
+        return Response(serializer.data)
+
+    def patch(self, request, pk, **kwargs):
+        transaction = self.get_object(pk, user=request.user)
+
+        data = request.data
+        update_fields = pick_keys(
+            request.data, ('description', 'amount', 'date')
+        )
+        category_id = data.get('category_id')
+        if category_id:
+            update_fields['category'] = get_category_for_user(request.user, category_id)
+
+        transaction = update_transaction(transaction, **update_fields)
+
         serializer = TransactionSerializer(transaction)
         return Response(serializer.data)
