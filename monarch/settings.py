@@ -78,10 +78,15 @@ WSGI_APPLICATION = 'monarch.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-print(env.db())
 DATABASES = {
     'default': env.db(),
 }
+
+
+## Auth stufff
+
+# Use custom user model
+AUTH_USER_MODEL = "monarch.User"
 
 
 # Password validation
@@ -101,6 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization
