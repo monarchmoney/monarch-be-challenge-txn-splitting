@@ -33,8 +33,12 @@ Seed initial test data (Accounts, Categories, Transactions) for that user
 ./manage.py seed_user_data <EMAIL>
 ```
 
-Check that the local webserver is running. Go to https://localhost:8000/ 
+Check that the local webserver is running, you should see a Django 404 page.
+http://localhost:8000/
 
 Log in to the admin (this is the easiest way to log in as your user)
 https://localhost:8000/admin
 
+Poke around the REST API 
+http://localhost:8000/api/users/me
+http://localhost:8000/api/transactions
