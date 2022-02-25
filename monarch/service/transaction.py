@@ -54,21 +54,6 @@ def get_transactions(
     if user:
         qs = qs.filter(user=user)
 
-    # qs = account.transactions
     qs = qs.order_by('-date')
     transactions = qs.all()[offset: offset + limit]
     return transactions
-
-
-# def get_transactions_for_user(
-#     user: User,
-#     offset=0,
-#     limit=100,
-# ) -> list[Transaction]:
-#     """
-#     Get all transactions for an account
-#     """
-#     qs = user.transactions
-#     qs = qs.order_by('-date')
-#     transactions = qs.all()[offset: offset + limit]
-#     return transactions
