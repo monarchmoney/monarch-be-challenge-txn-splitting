@@ -12,6 +12,7 @@ psycopg2-binary = "*"
 flake8 = "*"
 watchdog = "*"
 pyyaml = "*"
+pytest-django = "*"
 
 [dev-packages]
 
