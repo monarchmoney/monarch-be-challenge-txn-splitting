@@ -45,4 +45,7 @@ RUN \
 # Copy rest of files
 COPY . /home/app
 
+# Install shortcuts
+RUN pip install -e monarch
+
 CMD "/home/app/entrypoint/run-web.sh"
