@@ -23,6 +23,18 @@ Enter the web docker container. You will need to use this to run commands and th
 docker-compose exec web bash
 ```
 
+Create a superuser (we can use this as both the admin user and your main test user). Choose any email and password from the prompt.
+```
+./manage.py createsuperuser
+```
 
+Seed initial test data (Accounts, Categories, Transactions) for that user
+```
+./manage.py seed_user_data <EMAIL>
+```
 
+Check that the local webserver is running. Go to https://localhost:8000/ 
+
+Log in to the admin (this is the easiest way to log in as your user)
+https://localhost:8000/admin
 
