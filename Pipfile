@@ -8,6 +8,7 @@ django = "*"
 python-dotenv = "*"
 djangorestframework = "*"
 django-environ = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

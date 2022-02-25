@@ -77,12 +77,10 @@ WSGI_APPLICATION = 'monarch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
+print(env.db())
 DATABASES = {
-    'default': {
-        env.db(),
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db(),
 }
 
 
