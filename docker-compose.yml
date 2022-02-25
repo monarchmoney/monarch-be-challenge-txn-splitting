@@ -48,7 +48,7 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
     volumes:
-      - ~/.postgres_data/monarch-api:/var/lib/postgresql/data:delegated
+      - ~/.postgres_data/monarch-be-challenge:/var/lib/postgresql/data:delegated
     networks:
       - internal
 
