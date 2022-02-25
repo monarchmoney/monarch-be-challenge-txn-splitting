@@ -1,7 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 
-# from monarch.api.user import urls as user_urls
+from monarch.api import views
 
 urlpatterns = [
-    path('', include('monarch.api.user.urls')),
+    path('users/', views.UserList.as_view()),
+    # path('users/<str:pk>', views.UserDetail.as_view()),
+    path('foo/', views.foo),
 ]
