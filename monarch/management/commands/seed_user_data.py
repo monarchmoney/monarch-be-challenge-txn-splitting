@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
 from monarch.db.models import User
-from monarch.development.seed import seed_account_data_for_user
+from monarch.development.seed import seed_data_for_user
 
 
 class Command(BaseCommand):
@@ -13,4 +13,4 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         email = kwargs["email"]
         user = User.objects.get(email=email)
-        seed_account_data_for_user(user, reset=True)
+        seed_data_for_user(user, reset=True)
