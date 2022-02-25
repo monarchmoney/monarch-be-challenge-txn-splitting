@@ -1,5 +1,8 @@
 from django.db import models
 
+from monarch.constants import CategoryType
+from monarch.db.utils import enum_to_choices
+
 
 class Category(models.Model):
     class Meta:
@@ -13,3 +16,4 @@ class Category(models.Model):
     )
 
     name = models.TextField()
+    type = models.TextField(choices=enum_to_choices(CategoryType))  # 'income', 'expense', 'transfer
