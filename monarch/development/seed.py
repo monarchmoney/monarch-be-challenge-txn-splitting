@@ -62,19 +62,7 @@ def _create_transactions_from_values(account, values):
 
 
 def seed_credit_transactions(account):
-    # user = account.user
     _create_transactions_from_values(account, CREDIT_TRANSACTIONS)
-
-    # for (description, amount, dt, category_name) in CREDIT_TRANSACTIONS:
-    #     category = get_user_category_by_name(user=user, name=category_name)
-    #     create_transaction(
-    #         account=account,
-    #         amount=amount,
-    #         date=dt,
-    #         description=description,
-    #         category=category,
-    #     )
-
 
 def seed_checking_transactions(account):
     _create_transactions_from_values(account, CHECKING_TRANSACTIONS)
