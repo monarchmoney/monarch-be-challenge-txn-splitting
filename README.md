@@ -42,6 +42,8 @@ Log in to the admin (this is the easiest way to log in as your user)
 
 Poke around the REST API 
 - http://localhost:8000/api/users/me
+- http://localhost:8000/api/accounts
+- http://localhost:8000/api/categories
 - http://localhost:8000/api/transactions
 
 
