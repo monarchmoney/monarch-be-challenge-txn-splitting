@@ -19,4 +19,13 @@ def get_account_for_user(user, account_id):
 
 
 def get_accounts_for_user(user):
-    return list(user.accounts.all())
+    return user.accounts.all()
+
+
+def get_category_for_user(user, category_id):
+    if category_id:
+        return user.categories.get(id=category_id)
+
+
+def get_account_by_id(account_id):
+    return Account.objects.get(id=account_id)

@@ -28,6 +28,8 @@ class Transaction(models.Model):
         on_delete=models.PROTECT,
         null=True,
     )
+    original_id = models.TextField(blank=True, null=True)
+    is_split = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.id} ({self.description}, {self.date})"
