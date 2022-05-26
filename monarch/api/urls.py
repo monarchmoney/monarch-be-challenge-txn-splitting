@@ -11,4 +11,5 @@ urlpatterns = [
     path('categories/<str:pk>', views.CategoryDetail.as_view()),
     path('transactions', views.TransactionList.as_view()),
     path('transactions/<str:pk>', views.TransactionDetail.as_view()),
+    path('transactions/<str:pk>/split', views.SplitTransaction.as_view()),
 ]

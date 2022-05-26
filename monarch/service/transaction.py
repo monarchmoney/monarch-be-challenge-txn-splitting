@@ -12,6 +12,8 @@ def create_transaction(
     date: date,
     description: str,
     category: Optional[Category] = None,
+    original_id: Optional[str] = None,
+    is_split: Optional[bool] = False,
 ) -> Transaction:
     """
     Create a transaction
@@ -27,6 +29,8 @@ def create_transaction(
         date=date,
         description=description,
         category=category,
+        original_id=original_id,
+        is_split=is_split
     )
     transaction.save()
     return transaction
@@ -34,6 +38,14 @@ def create_transaction(
 
 def get_transaction_for_user(user, transaction_id):
     return user.transactions.get(id=transaction_id)
+
+
+def get_split_transactions(original_id):
+    return Transaction.objects.filter(original_id=original_id).all()
+
+
+def get_transaction_by_id(transaction_id):
+    return Transaction.objects.get(id=transaction_id)
 
 
 def get_transactions(
@@ -47,7 +59,7 @@ def get_transactions(
     """
     assert account or user
 
-    qs = Transaction.objects
+    qs = Transaction.objects.filter(is_split=False)
 
     if account:
         qs = qs.filter(account=account)
@@ -77,3 +89,29 @@ def update_transaction(
 
     transaction.save()
     return transaction
+
+
+def do_transaction_split(
+    transaction: Transaction,
+) -> Transaction:
+    """
+    make a transaction split
+    """
+    transaction.is_split = True
+    transaction.save()
+    return transaction
+
+
+def undo_transaction_split(
+    transaction: Transaction,
+) -> Transaction:
+    """
+    undo a transaction split
+    """
+    transaction.is_split = False
+    transaction.save()
+    return transaction
+
+
+def delete(transaction_id):
+    Transaction.objects.filter(id=transaction_id).delete()
